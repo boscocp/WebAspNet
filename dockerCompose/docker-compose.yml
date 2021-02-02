@@ -1,0 +1,28 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  dockercompose:
+    image: dockercompose
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
+    depends_on: 
+      - "database"
+
+  database:
+    image: postgres # use latest official postgres version
+    restart: always
+    ports:
+      - '5432'
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - ./database-data:/var/lib/postgresql/data/
+      #- ./SQLScript/scrip.sql :/docker-entrypoint-initdb.d/scrip.sql
+
+ 

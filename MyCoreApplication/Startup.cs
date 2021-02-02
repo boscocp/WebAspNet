@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyCoreApplication.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyCoreApplication
 {
@@ -26,7 +27,7 @@ namespace MyCoreApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews(); 
-            services.AddEntityFrameworkNpgsql().AddDbContext<PersonContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PersonDB")));
+            services.AddEntityFrameworkNpgsql().AddDbContext<PersonContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PersonDB")));           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
